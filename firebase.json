@@ -1,0 +1,40 @@
+{
+  "database": {
+    "rules": "server/database.rules.json"
+  },
+  "functions": [
+    {
+      "source": "server",
+      "codebase": "default"
+    }
+  ],
+  "hosting": {
+    "site": "pixify-hq",
+    "public": "client/dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": {
+          "functionId": "pixifyApi",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/webhook",
+        "function": {
+          "functionId": "pixifyApi",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "admins": {
+      ".read": false,
+      ".write": false
+    },
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    }
+  }
+}
